@@ -41,7 +41,7 @@ class GameScene extends Phaser.Scene {
     //   score: 12345546745654,
     //   time: this.gameDuration,
     // });
-    this.bgAudio = this.sound.add("bgaudio", { loop: true, volume: 0.5 });
+    this.bgAudio = this..add("bgaudio", { loop: true, volume: 0.5 });
     this.bgAudio.play();
 
     this.directionInput = this.add
@@ -635,8 +635,6 @@ class GameScene extends Phaser.Scene {
   }
   hitFinishLine(player, obstacle) {
     this.bgAudio.stop();
-    this.congratsSound = this.sound.add("congrats", { volume: 1 });
-    this.congratsSound.play();
 
     this.timerEvent = this.time.addEvent({
       delay: 100,
@@ -667,3 +665,4 @@ class GameScene extends Phaser.Scene {
 }
 
 export default GameScene;
+
