@@ -16,16 +16,16 @@ class StartScene extends Phaser.Scene {
       .setScale(1 / this.scaleBg);
 
     this.timerBG = this.add
-      .image(30, 70, "timer")
+      .image(20, 100, "timer")
       .setOrigin(0, 0)
       .setScale(0.55);
     this.scoreBG = this.add
-      .image(570, 70, "score")
+      .image(580, 100, "score")
       .setOrigin(1, 0)
       .setScale(0.55);
 
     this.timerText = this.add
-      .text(88, 100, "1:00", {
+      .text(78, 130, "1:00", {
         fontFamily: "Nunito, sans-serif",
         fontStyle: "bold ",
         fontSize: "25px",
@@ -34,7 +34,7 @@ class StartScene extends Phaser.Scene {
       .setOrigin(0.5);
 
     this.scoreText = this.add
-      .text(600 - 160, 100, "0", {
+      .text(600 - 150, 130, "0", {
         fontFamily: "Nunito, sans-serif",
         fontStyle: "bold ",
         fontSize: "25px",
@@ -42,13 +42,13 @@ class StartScene extends Phaser.Scene {
       })
       .setOrigin(0, 0.5);
 
-    this.player = this.physics.add.sprite(250, 900, "ic_jazi_car");
+    this.player = this.physics.add.sprite(250, 950, "ic_jazi_car");
     this.player.setCollideWorldBounds(true);
-    this.player.setScale(0.65).setOrigin(0.5, 0);
+    this.player.setScale(0.4).setOrigin(0.5, 0);
 
     // Play button
     const playButton = this.add
-      .image(300, 1100, "startBtn")
+      .image(300, 1150, "startBtn")
       .setInteractive({ useHandCursor: true })
       .setOrigin(0.5)
       .setScale(0.5);

@@ -55,10 +55,10 @@ class GameScene extends Phaser.Scene {
       .tileSprite(300, 650, 600 * this.scaleBg, 1300 * this.scaleBg, "bg")
       .setScale(1 / this.scaleBg);
     this.crossBtn = this.add
-      .image(550, 1200, "ic_cross")
+      .image(50, 50, "ic_cross")
       .setOrigin(0.5)
       .setDepth(10)
-      .setScale(0.35)
+      .setScale(0.3)
       .setInteractive({ useHandCursor: true })
       .on("pointerdown", () => {
         this.tweens.add({
@@ -81,17 +81,17 @@ class GameScene extends Phaser.Scene {
       });
 
     this.timerBG = this.add
-      .image(30, 70, "timer")
+      .image(20, 100, "timer")
       .setOrigin(0, 0)
       .setScale(0.55)
       .setDepth(10);
     this.scoreBG = this.add
-      .image(570, 70, "score")
+      .image(580, 100, "score")
       .setOrigin(1, 0)
       .setScale(0.55)
       .setDepth(10);
     this.timerText = this.add
-      .text(88, 100, `0`, {
+      .text(78, 130, `0`, {
         fontFamily: "Nunito, sans-serif",
         fontStyle: "bold ",
         fontSize: "25px",
@@ -101,7 +101,7 @@ class GameScene extends Phaser.Scene {
       .setDepth(10);
     this.updateTime(0);
     this.scoreText = this.add
-      .text(600 - 160, 100, "0", {
+      .text(600 - 150, 130, "0", {
         fontFamily: "Nunito, sans-serif",
         fontStyle: "bold ",
         fontSize: "25px",
@@ -135,9 +135,9 @@ class GameScene extends Phaser.Scene {
     });
 
     // Player car
-    this.player = this.physics.add.sprite(250, 950, "ic_jazi_car");
+    this.player = this.physics.add.sprite(250, 1100, "ic_jazi_car");
     this.player.setCollideWorldBounds(true);
-    this.playerScale = 0.65;
+    this.playerScale = 0.4;
     this.player.setScale(this.playerScale).setDepth(5).setOrigin(0.5, 0);
 
     this.currentLaneIndex = 1;
@@ -561,7 +561,7 @@ class GameScene extends Phaser.Scene {
         const obstacleKey = "ic_trophy";
         const obstacle = this.trophy.create(x, -140, obstacleKey);
         obstacle.setVelocityY(this.gameSpeed * this.initialRoadSpeed);
-        obstacle.setScale(1.2);
+        obstacle.setScale(0.35);
         this.time.delayedCall(7000, () => {
           if (obstacle) {
             obstacle.destroy();
@@ -572,7 +572,7 @@ class GameScene extends Phaser.Scene {
       const obstacleKey = "ic_icon";
       const obstacle = this.coins.create(x, -140, obstacleKey);
       obstacle.setVelocityY(this.gameSpeed * this.initialRoadSpeed);
-      obstacle.setScale(0.5);
+      obstacle.setScale(0.4);
       this.time.delayedCall(7000, () => {
         if (obstacle) {
           obstacle.destroy();
