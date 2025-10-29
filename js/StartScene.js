@@ -1,3 +1,12 @@
+function exitGame() {
+  if (navigator.app) {
+    navigator.app.exitApp(); // Android
+  } else if (navigator.device) {
+    navigator.device.exitApp(); // Legacy Cordova
+  } else {
+    window.close();
+  }
+}
 class StartScene extends Phaser.Scene {
   constructor() {
     super({ key: "StartScene" });
@@ -34,7 +43,7 @@ class StartScene extends Phaser.Scene {
               duration: 100,
               ease: "Power1",
               onComplete: () => {
-                // this.pauseMenu();
+                this.pauseMenu();
               },
             });
           },
@@ -113,6 +122,62 @@ class StartScene extends Phaser.Scene {
         scale: 0.5,
         duration: 120,
         ease: "Power2",
+      });
+    });
+  }
+  pauseMenu() {
+    this.exitMenuItems = [];
+    this.blurBg = this.add.image(0, 0, "blurBg").setOrigin(0, 0).setDepth(11);
+    this.exitMenu = this.add
+      .image(300, 450, "ic_dialog")
+      .setOrigin(0.5, 0)
+      .setDepth(11)
+      .setScale(0.75);
+    this.yesBtn = this.add
+      .image(300, 720, "btn_yes")
+      .setOrigin(0.5)
+      .setDepth(11)
+      .setScale(0.7)
+      .setInteractive({ useHandCursor: true });
+    this.crossBtnP = this.add
+      .image(525, 492, "ic_close_dialog")
+      .setOrigin(0.5)
+      .setDepth(11)
+      .setScale(1.6)
+      .setInteractive({ useHandCursor: true });
+
+    this.exitMenuItems.push(this.blurBg);
+    this.exitMenuItems.push(this.exitMenu);
+    this.exitMenuItems.push(this.yesBtn);
+    this.exitMenuItems.push(this.crossBtnP);
+
+    this.yesBtn.on("pointerdown", () => {
+      this.tweens.add({
+        targets: this.yesBtn,
+        scale: 0.6,
+        duration: 100,
+        ease: "Power1",
+        yoyo: true,
+        onComplete: () => {
+          exitGame();
+        },
+      });
+    });
+    this.crossBtnP.on("pointerdown", () => {
+      this.tweens.add({
+        targets: this.crossBtnP,
+        scale: 1.3,
+        duration: 100,
+        ease: "Power1",
+        yoyo: true,
+        onComplete: () => {
+          this.exitMenuItems.forEach((item) => {
+            if (item) {
+              item.destroy();
+            }
+          });
+          this.exitMenuItems = [];
+        },
       });
     });
   }
