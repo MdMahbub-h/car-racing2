@@ -15,6 +15,32 @@ class StartScene extends Phaser.Scene {
       .tileSprite(300, 650, 600 * this.scaleBg, 1300 * this.scaleBg, "bg")
       .setScale(1 / this.scaleBg);
 
+    this.crossBtn = this.add
+      .image(50, 50, "ic_cross")
+      .setOrigin(0.5)
+      .setDepth(10)
+      .setScale(0.3)
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", () => {
+        this.tweens.add({
+          targets: this.crossBtn,
+          scale: 0.26,
+          duration: 100,
+          ease: "Power1",
+          onComplete: () => {
+            this.tweens.add({
+              targets: this.crossBtn,
+              scale: 0.3,
+              duration: 100,
+              ease: "Power1",
+              onComplete: () => {
+                // this.pauseMenu();
+              },
+            });
+          },
+        });
+      });
+
     this.timerBG = this.add
       .image(20, 100, "timer")
       .setOrigin(0, 0)
