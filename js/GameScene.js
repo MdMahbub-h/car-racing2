@@ -63,7 +63,7 @@ class GameScene extends Phaser.Scene {
       .on("pointerdown", () => {
         this.tweens.add({
           targets: this.crossBtn,
-          scale: 0.3,
+          scale: 0.28,
           duration: 100,
           ease: "Power1",
           onComplete: () => {
